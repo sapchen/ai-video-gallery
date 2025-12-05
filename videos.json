@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "title": "关于做饭与烧菜这件事",
+    "description": "自身体会和未来规划",
+    "fileName": "video-1.mp4",
+    "duration": "5秒"
+  },
+  {
+    "id": 2,
+    "title": "微信公众号数据分析",
+    "description": "分享自行车修理和马拉松主题",
+    "fileName": "video-2.mp4",
+    "duration": "10秒"
+  },
+  {
+    "id": 3,
+    "title": "灵感与潜意识",
+    "description": "讨论灵感的来源极其与潜意识的关系",
+    "fileName": "video-3.mp4",
+    "duration": "5秒"
+  }
+  // 在此继续添加剩余8个视频...
+  // 注意：确保fileName与public/videos/中的文件名完全一致
+]
