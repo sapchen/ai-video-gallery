@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './', // 如果部署到子路径，改为 '/仓库名/'
+  //base: './', // 如果部署到子路径，改为 '/仓库名/'
+  base: '/ai-video-gallery/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
