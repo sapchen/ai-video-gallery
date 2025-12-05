@@ -25,10 +25,17 @@ header {
 }
 
 header h1 {
-    font-size: 2.2em;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #1a202c;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    
+    /* 对所有支持-webkit-text-fill-color的浏览器 */
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; /* 标准属性 */
+    
+    /* 对不支持渐变色文字的浏览器显示纯色 */
+    color: #2d3748; /* 纯色作为fallback */
 }
 
 header p {

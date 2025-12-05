@@ -16,8 +16,64 @@
   {
     "id": 3,
     "title": "灵感与潜意识",
-    "description": "讨论灵感的来源极其与潜意识的关系",
+    "description": "讨论灵感的来源及其与潜意识的关系",
     "fileName": "video-3.mp4",
+    "duration": "5秒"
+  },
+  {
+    "id": 4,
+    "title": "关于自我迭代的方法和产生思维负债的原因",
+    "description": "讨论思维负债的来源及该如何解决他",
+    "fileName": "video-4.mp4",
+    "duration": "5秒"
+  },
+  {
+    "id": 5,
+    "title": "这次我选择另一种马拉松",
+    "description": "分享自己未来的跑者之路，以及暗示将退出路跑赛事",
+    "fileName": "video-5.mp4",
+    "duration": "5秒"
+  },
+  {
+    "id": 6,
+    "title": "阴阳文化",
+    "description": "分享自己对我国阴阳文化的理解，以及和西方文化的不同点",
+    "fileName": "video-6.mp4",
+    "duration": "5秒"
+  },
+  {
+    "id": 7,
+    "title": "微信收藏表情自动排序算法",
+    "description": "描述了如何通过该算法来简化自己收藏的表情库，以达到节约时间的目的",
+    "fileName": "video-7.mp4",
+    "duration": "5秒"
+  },
+  {
+    "id": 8,
+    "title": "银河",
+    "description": "描述了自己开通微信公众号的心境，并配图在新西兰和妻子一并用肉眼看见银河时拍下的珍贵照片",
+    "fileName": "video-8.mp4",
+    "duration": "10秒"
+  },
+  {
+    "id": 9,
+    "title": "简洁",
+    "description": "描述了自己如何通过化繁为简，度过人生的低潮",
+    "fileName": "video-9.mp4",
+    "duration": "5秒"
+  },
+  {
+    "id": 10,
+    "title": "自我迭代",
+    "description": "描述了自己如何通过自我的迭代，周而复始地层层推进实现心中的想法",
+    "fileName": "video-10.mp4",
+    "duration": "10秒"
+  },
+  {
+    "id": 11,
+    "title": "先行动后思考",
+    "description": "描述了进入职业生涯中期如何通过先行动，再思考的方式实现自我突破",
+    "fileName": "video-11.mp4",
     "duration": "5秒"
   }
 ]
