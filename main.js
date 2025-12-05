@@ -1,3 +1,31 @@
+// 添加到 main.js 顶部
+function fixAssetPaths() {
+  // 修复 CSS 链接
+  const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
+  cssLinks.forEach(link => {
+    if (link.href.includes('localhost')) return;
+    if (!link.href.includes('ai-video-gallery')) {
+      link.href = link.href.replace('/style.css', '/ai-video-gallery/style.css');
+    }
+  });
+  
+  // 修复 JSON 数据路径
+  window.VIDEO_DATA_PATH = `${BASE_PATH}videos.json`;
+}
+
+
+// 在文件顶部添加路径配置
+const isLocalhost = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1';
+
+// 动态计算基础路径
+const BASE_PATH = isLocalhost ? '/' : '/ai-video-gallery/';
+
+// 视频加载时使用
+const source = document.createElement('source');
+source.src = `${BASE_PATH}videos/${video.fileName}`;
+
+
 // 加载视频配置并生成画廊
 async function loadVideoGallery() {
     try {
@@ -17,7 +45,7 @@ async function loadVideoGallery() {
             videoCard.innerHTML = `
                 <div class="video-wrapper">
                     <video controls preload="metadata" playsinline>
-                        <source src="/videos/${video.fileName}" type="video/mp4">
+                        <source src="/ai-video-gallery/videos/${video.fileName}" type="video/mp4">
                         您的浏览器不支持视频播放
                     </video>
                     <div class="play-button">▶</div>
@@ -116,7 +144,8 @@ function initDynamicSubtitle() {
 }
 
 // 更新事件监听器
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
+    fixAssetPaths();
     loadVideoGallery();
     initDynamicSubtitle();
     

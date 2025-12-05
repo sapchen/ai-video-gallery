@@ -3,10 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.config.local.js",
+    "dev:prod": "vite --config vite.config.js",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "devDependencies": {
     "vite": "^5.0.0"
