@@ -1,36 +1,17 @@
-// 添加到 main.js 顶部
-function fixAssetPaths() {
-  // 修复 CSS 链接
-  const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-  cssLinks.forEach(link => {
-    if (link.href.includes('localhost')) return;
-    if (!link.href.includes('ai-video-gallery')) {
-      link.href = link.href.replace('/style.css', '/ai-video-gallery/style.css');
-    }
-  });
-  
-  // 修复 JSON 数据路径
-  window.VIDEO_DATA_PATH = `${BASE_PATH}videos.json`;
-}
+// 使用Vite注入的BASE_URL环境变量（最正确的方式）
+const BASE_URL = import.meta.env.BASE_URL || '/';
 
-
-// 在文件顶部添加路径配置
-const isLocalhost = window.location.hostname === 'localhost' || 
-                    window.location.hostname === '127.0.0.1';
-
-// 动态计算基础路径
-const BASE_PATH = isLocalhost ? '/' : '/ai-video-gallery/';
-
-// 视频加载时使用
-const source = document.createElement('source');
-source.src = `${BASE_PATH}videos/${video.fileName}`;
-
+console.log('Base URL:', BASE_URL); // 调试用，开发时是'/'，生产是'/ai-video-gallery/'
 
 // 加载视频配置并生成画廊
 async function loadVideoGallery() {
     try {
-        // 1. 加载视频配置
-        const response = await fetch('/videos.json');
+        // 1. 使用正确的路径加载JSON
+        const response = await fetch(`${BASE_URL}videos.json`);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
         const videos = await response.json();
         
         // 2. 更新视频数量显示
@@ -45,7 +26,8 @@ async function loadVideoGallery() {
             videoCard.innerHTML = `
                 <div class="video-wrapper">
                     <video controls preload="metadata" playsinline>
-                        <source src="/ai-video-gallery/videos/${video.fileName}" type="video/mp4">
+                        <!-- 使用动态路径，而不是硬编码 -->
+                        <source src="${BASE_URL}videos/${video.fileName}" type="video/mp4">
                         您的浏览器不支持视频播放
                     </video>
                     <div class="play-button">▶</div>
@@ -66,8 +48,17 @@ async function loadVideoGallery() {
             const videoEl = videoCard.querySelector('video');
             const playBtn = videoCard.querySelector('.play-button');
             
-            videoEl.addEventListener('play', () => playBtn.style.display = 'none');
-            videoEl.addEventListener('pause', () => playBtn.style.display = 'block');
+            videoEl.addEventListener('play', () => {
+                playBtn.style.display = 'none';
+            });
+            videoEl.addEventListener('pause', () => {
+                playBtn.style.display = 'flex';
+            });
+            
+            // 点击播放按钮直接播放视频
+            playBtn.addEventListener('click', () => {
+                videoEl.play();
+            });
         });
         
         // 4. 更新最后修改日期
@@ -80,14 +71,7 @@ async function loadVideoGallery() {
     }
 }
 
-// 页面加载完成后执行
-document.addEventListener('DOMContentLoaded', function() {
-    loadVideoGallery();  // 原有函数
-    initDynamicSubtitle(); // 新增的动态副标题函数
-});
-
-// 在 main.js 文件末尾添加以下代码（在 loadVideoGallery 函数定义之后）
-
+// 动态副标题功能
 function initDynamicSubtitle() {
     const subtitles = [
         "AI原生视觉实验室",
@@ -143,12 +127,8 @@ function initDynamicSubtitle() {
     });
 }
 
-// 更新事件监听器
+// 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', () => {
-    fixAssetPaths();
     loadVideoGallery();
     initDynamicSubtitle();
-    
-    // 更新最后修改日期
-    document.getElementById('update-date').textContent = new Date().toLocaleDateString('zh-CN');
 });

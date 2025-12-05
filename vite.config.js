@@ -1,17 +1,14 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  //base: './', // 如果部署到子路径，改为 '/仓库名/'
+  // 生产环境用子路径，Vite会自动处理
   base: '/ai-video-gallery/',
+  
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name]-[hash][extname]'
-      }
-    }
+    assetsDir: 'assets'
   },
+  
   server: {
     port: 5173,
     open: true
