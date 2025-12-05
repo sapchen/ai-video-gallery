@@ -20,6 +20,4 @@
     "fileName": "video-3.mp4",
     "duration": "5秒"
   }
-  // 在此继续添加剩余8个视频...
-  // 注意：确保fileName与public/videos/中的文件名完全一致
 ]
